@@ -12,9 +12,11 @@ const App = () => {
   const [userData] = useContext(AuthContext)
 
   useEffect(()=>{
+    // Clear any persisted login so app always asks for credentials on startup
+    localStorage.removeItem('loggedInUser')
     const loggedInUser = localStorage.getItem('loggedInUser')
-    
-    if(loggedInUser){
+
+    if (loggedInUser) {
       const userData = JSON.parse(loggedInUser)
       setUser(userData.role)
       setLoggedInUserData(userData.data)
